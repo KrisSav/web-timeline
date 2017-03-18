@@ -23,7 +23,7 @@ for (i in 1:3){
   if (i==3) {fileURL = "https://nova.rambler.ru/search?query=%D0%9C%D0%BE%D0%B4%D0%B5%D0%BB%D0%B8%20KIA%20%D0%BF%D0%BE%D1%81%D0%BB%D0%B5"}
 
   # цикл с диапазоном рассматриваемых лет
-  for(j in 2013:2022){
+  for(j in 2009:2018){
     
     Sys.sleep(10)
     
