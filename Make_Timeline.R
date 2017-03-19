@@ -12,7 +12,7 @@ library('RCurl')
 # объявление переменных
 year <- vector(mode = 'numeric', length = 0)
 header <- vector(mode = 'character', length = 0)
-source <- vector(mode = 'character', length = 0)
+sources <- vector(mode = 'character', length = 0)
 URL <- vector(mode = 'character', length = 0)
 l2 = 0
 
@@ -42,7 +42,7 @@ for (i in 1:3){
     header <- c(header,xpathSApply(rootNode, '//a[@class = "b-serp-item__link"]', xmlValue))
     
     # выбираем все источники результатов запроса
-    source <- c(source,xpathSApply(rootNode, '//article/span[2]/span', xmlValue))
+    sources <- c(sources,xpathSApply(rootNode, '//article/span[2]/span', xmlValue))
     
     # выбираем все полные ссылки на источники
     URL <- c(URL,xpathSApply(rootNode, '//h2[@class = "b-serp-item__header"]/a', xmlGetAttr,'href'))
@@ -60,9 +60,9 @@ for (i in 1:3){
 }
 
 # преобразуем данные во фрейм
-data <- data.frame(Year = year, Header = header, Source = source, URL = URL, stringsAsFactors = F)
+data <- data.frame(Year = year, Header = header, Source = sources, URL = URL, stringsAsFactors = F)
 
-# запись данных в файл Timeline.csv
-write.csv(data, './Timeline.csv', row.names = F)
+# запись данных в файл Timeline.csv с кодировкой UTF-8
+write.csv(data, './Timeline.csv', row.names = F, fileEncoding = "UTF-8")
 
 print("Результаты запросов записаны в файл Timeline.csv")
